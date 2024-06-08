@@ -105,6 +105,16 @@ library SCL_RIP6565{
   return (extKpub, signer);
  }
 
+ function TransformKey(uint256[2] memory Kpub) public view returns (uint256[5] memory extKpub){
+  extKpub[4]=SCL_sha512.Swap256(edCompress(Kpub));//compressed Kpub in edwards form
+
+  (extKpub[0], extKpub[1])=Edwards2WeierStrass(Kpub[0], Kpub[1]);
+  (extKpub[2], extKpub[3])=ecPow128(extKpub[0], extKpub[1], 1, 1);
+ 
+  //todo: add check on curve here
+  return (extKpub);
+}
+
     function Swap64(uint64 w) internal pure returns (uint64 x){
      uint64 tmp= (w >> 32) | (w << 32);
 	 tmp = ((tmp & 0xff00ff00ff00ff00) >> 8) |    ((tmp & 0x00ff00ff00ff00ff) << 8); 

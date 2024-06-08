@@ -85,6 +85,14 @@ contract SCL_Ed25519Test is Test {
         assertEq(mulmod(rac, rac, p), val);
     }
 
+    function test_rip6565_transformKey() public view{
+         uint256[2] memory kPub;
+        kPub[0] = 43933056957747458452560886832567536073542840507013052263144963060608791330050;
+        kPub[1] = 16962727616734173323702303146057009569815335830970791807500022961899349823996;
+        uint256[5] memory extKpub;
+        extKpub = SCL_RIP6565.TransformKey(kPub);
+        assertEq(extKpub[4],0xfc51cd8e6218a1a38da47ed00230f0580816ed13ba3303ac5deb911548908025);
+    }
 
     function test_ed255Verif_rfc_BE() public {
         //vector 3 input secret key, page 25 of RFC8032, swapped
@@ -184,6 +192,5 @@ contract SCL_Ed25519Test is Test {
         }
 
     }
-
 
 }
