@@ -21,7 +21,7 @@ pragma solidity >=0.8.19 <0.9.0;
 import "forge-std/Test.sol";
 
 
-import "@solidity/lib/libSCL_rip6565.sol";
+import "@solidity/lib/libSCL_RIP6565.sol";
 
 import "@solidity/hash/SCL_sha512.sol";
 
